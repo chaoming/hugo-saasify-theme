@@ -90,58 +90,77 @@ Create or update your `hugo.toml` with the following configuration:
 
 ```toml
 # Basic Configuration
-baseURL = "/"
+baseURL = "/"                     # Placeholder for site URL
 languageCode = "en-us"
-title = "Your Site Title"
+title = "Your Site Title"        # Placeholder for site name
 theme = "hugo-saasify-theme"
 
-# Required Features
-pygmentsCodeFences = true  # Enable syntax highlighting
+# Syntax highlighting & features
+pygmentsCodeFences = true
 pygmentsUseClasses = true
-enableEmoji = true        # Enable emoji support
-enableGitInfo = true      # Enable Git info for lastmod
+enableEmoji = true
+enableGitInfo = true
 
-# Required Module Configuration
-[module]
-  [module.hugoVersion]
-    extended = true
-    min = "0.80.0"
+# Taxonomies
+[taxonomies]
+  category = "categories"
+  tag = "tags"
 
-# Required Build Configuration
-[build]
-  writeStats = true      # Required for TailwindCSS
-
-# Required Markup Configuration
-[markup]
-  [markup.highlight]
-    noClasses = false
-    lineNos = true
-    codeFences = true
-  [markup.goldmark.renderer]
-    unsafe = true       # Allow HTML in markdown
-  [markup.tableOfContents]
-    endLevel = 3
-    ordered = false
-    startLevel = 2
+# Pagination
+paginate = 6
+paginatePath = "page"
 
 # Theme Parameters
 [params]
   description = "Your site description"
   author = "Your Name"
-  logo = "/images/logo.svg"      # Path to your logo
-  # Google Analytics ID (e.g., "G-XXXXXXXXXX")
-  googleAnalytics = "G-XXXXXXXXXX"  # Only enabled in production
+  logo = "/images/logo.svg"
+  googleAnalytics = "G-XXXXXXXXXX"  # Placeholder for GA ID
 
-  # Header Configuration
+  # Global CTA
+  [params.cta]
+    enable = true
+    title = "Ready to Get Started?"
+    description = "Join companies using our platform"
+    gradient_from = "#2563eb"
+    gradient_to = "#7c3aed"
+    gradient_angle = 30
+    [params.cta.primary_button]
+      text = "Get Started Free"
+      url = "/get-started"
+    [params.cta.secondary_button]
+      text = "Book Demo"
+      url = "/demo"
+
+  # Social Links (placeholders)
+  [params.social]
+    linkedin = "https://linkedin.com/in/yourusername"
+    twitter = "https://twitter.com/yourusername"
+    github = "https://github.com/yourusername"
+
+  # Header Config
   [params.header]
     background = "bg-white/80 backdrop-blur-sm"
     border = "border-b border-gray-100"
-    
-    # Header Logo
+
     [params.header.logo]
       src = "/images/logo.svg"
-    
-    # Header Buttons (optional)
+
+    [params.header.menu]
+      spacing = "space-x-8"
+
+      [params.header.menu.dropdown]
+        width = "w-72"
+        container_padding = "py-6"
+        item_padding = "px-8 py-3"
+        background = "bg-white"
+        border = "border border-gray-100"
+        shadow = "shadow-xl"
+        radius = "rounded-lg"
+        text_color = "text-gray-700"
+        hover_background = "hover:bg-gray-50"
+        text_size = "text-sm"
+
     [params.header.buttons]
       [params.header.buttons.signIn]
         text = "Sign in"
@@ -150,23 +169,38 @@ enableGitInfo = true      # Enable Git info for lastmod
         text = "Get Started"
         url = "/get-started"
 
-  # Global CTA Configuration (optional)
-  [params.cta]
+  # Blog Config
+  [params.blog]
     enable = true
-    title = "Ready to Get Started?"
-    description = "Join companies using our platform"
-    [params.cta.primary_button]
-      text = "Get Started Free"
-      url = "/get-started"
-    [params.cta.secondary_button]
-      text = "Book Demo"
-      url = "/demo"
+    title = "Latest Articles"
+    subtitle = "Learn more about web development and best practices"
 
-  # Social Media Links (optional)
-  [params.social]
-    linkedin = "https://linkedin.com/in/yourusername"
-    twitter = "https://twitter.com/yourusername"
-    github = "https://github.com/yourusername"
+    [params.blog.cta]
+      enable = true
+
+    [params.blog.sidebar.recent]
+      enable = true
+      title = "Recent Articles"
+      count = 5
+
+    [params.blog.sidebar.categories]
+      enable = true
+      title = "Categories"
+
+    [params.blog.sidebar.tags]
+      enable = true
+      title = "Popular Tags"
+      count = 20
+
+    [params.blog.sidebar.subscribe]
+      enable = true
+      title = "Subscribe to Newsletter"
+      description = "Get the latest posts delivered right to your inbox"
+      action = "https://formspree.io/f/your-form-id"
+      emailName = "email"
+      buttonText = "Subscribe"
+      placeholder = "Enter your email"
+      disclaimer = "We respect your privacy. Unsubscribe at any time."
 
 # Navigation Menu
 [menu]
@@ -187,6 +221,71 @@ enableGitInfo = true      # Enable Git info for lastmod
     name = "Blog"
     url = "/blog"
     weight = 3
+
+# Footer Menus (optional)
+[[menu.footer_column_1]]
+  name = "Feature 1"
+  url = "/features/feature-1/"
+  weight = 1
+[[menu.footer_column_1]]
+  name = "Feature 2"
+  url = "/features/feature-2/"
+  weight = 2
+
+[[menu.footer_column_2]]
+  name = "Blog"
+  url = "/blog"
+  weight = 1
+[[menu.footer_column_2]]
+  name = "About Us"
+  url = "/company"
+  weight = 2
+[[menu.footer_column_2]]
+  name = "Careers"
+  url = "/careers"
+  weight = 3
+
+[[menu.footer_column_3]]
+  name = "License"
+  url = "/license"
+  weight = 1
+[[menu.footer_column_3]]
+  name = "Privacy Policy"
+  url = "/privacy"
+  weight = 2
+
+# Module Config
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.80.0"
+
+# Build Config
+[build]
+  writeStats = true
+  [build.buildStats]
+    enable = true
+
+# Security Settings
+[security.funcs]
+  getenv = ['^HUGO_', '^CI$']
+
+# Markup Config
+[markup]
+  [markup.highlight]
+    noClasses = false
+    lineNos = true
+    codeFences = true
+    guessSyntax = true
+    lineNumbersInTable = true
+
+  [markup.goldmark.renderer]
+    unsafe = true
+
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
 ```
 
 This configuration includes:
