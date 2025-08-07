@@ -1,5 +1,5 @@
 {{ $data := .Inner | transform.Unmarshal }}
-<section class="bg-white">
+<section class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{ $data.title | default "Frequently Asked Questions" }}</h2>
@@ -10,16 +10,16 @@
         
         <div class="space-y-6">
             {{ range $data.questions }}
-            <div class="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
-                <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors duration-200 focus:outline-none" 
+            <div class="border rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none" 
                         onclick="this.parentElement.querySelector('.faq-content').classList.toggle('hidden');
                                  this.querySelector('svg').classList.toggle('rotate-180')">
-                    <span class="text-lg font-medium text-gray-900">{{ .question }}</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span class="text-lg font-medium text-gray-900 dark:text-white">{{ .question }}</span>
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
-                <div class="faq-content hidden border-t">
+                <div class="faq-content hidden border-t dark:border-gray-600">
                     <div class="p-6 prose prose-sm sm:prose lg:prose-lg max-w-none">
                         {{ .answer | markdownify }}
                     </div>
