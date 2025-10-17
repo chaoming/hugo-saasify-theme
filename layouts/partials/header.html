@@ -40,6 +40,9 @@
                         <a href="{{ .URL }}" class="{{ with $headerConfig.menu.linkClass }}{{ . }}{{ else }}text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200{{ end }}">{{ .Name }}</a>
                         {{ end }}
                     {{ end }}
+                    
+                    <!-- Language Switcher -->
+                    {{ partial "language-switcher" . }}
                 </div>
 
                 <!-- CTA Buttons -->
@@ -86,6 +89,34 @@
                     {{ else }}
                     <a href="{{ .URL }}" class="{{ with $headerConfig.menu.mobileLinkClass }}{{ . }}{{ else }}block text-xl text-gray-900 hover:text-primary-600 font-bold transition duration-200 py-2{{ end }}">{{ .Name }}</a>
                     {{ end }}
+                {{ end }}
+                
+                <!-- Mobile Language Switcher -->
+                {{ if .Site.IsMultiLingual }}
+                {{ $currentLang := .Language }}
+                <div class="py-2 border-t border-gray-100 mt-2">
+                    <div class="text-xl text-gray-900 font-bold mb-2">
+                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                        {{ $currentLang.LanguageName }}
+                    </div>
+                    <div class="pl-4">
+                        {{ range .Site.Languages }}
+                            {{ if ne $currentLang.Lang .Lang }}
+                                {{ if $.IsTranslated }}
+                                    <a href="{{ $.Permalink | relLangURL .Lang }}" class="block text-gray-700 hover:text-primary-600 py-2">
+                                        {{ .LanguageName }}
+                                    </a>
+                                {{ else }}
+                                    <a href="{{ "/" | relLangURL .Lang }}" class="block text-gray-700 hover:text-primary-600 py-2">
+                                        {{ .LanguageName }}
+                                    </a>
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
+                    </div>
+                </div>
                 {{ end }}
                 
                 {{ if not $headerConfig.hideButtons }}

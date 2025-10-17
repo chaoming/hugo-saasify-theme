@@ -1,0 +1,31 @@
+{{ if .Site.IsMultiLingual }}
+{{ $currentLang := .Language }}
+<div class="relative group">
+    <button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+        </svg>
+        {{ $currentLang.LanguageName }}
+        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </button>
+    <div class="absolute left-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
+        <div class="py-2 bg-white border border-gray-100 shadow-xl rounded-lg">
+            {{ range .Site.Languages }}
+                {{ if ne $currentLang.Lang .Lang }}
+                    {{ if $.IsTranslated }}
+                        <a href="{{ $.Permalink | relLangURL .Lang }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                            {{ .LanguageName }}
+                        </a>
+                    {{ else }}
+                        <a href="{{ "/" | relLangURL .Lang }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                            {{ .LanguageName }}
+                        </a>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
