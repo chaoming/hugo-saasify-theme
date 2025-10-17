@@ -21,13 +21,14 @@ Learn about the theme's architecture and features:
 4. **[Layouts Guide](LAYOUTS.md)** - Understanding layout templates and structure
 5. **[Shortcodes Reference](SHORTCODES.md)** - Complete guide to all 21 shortcodes
 6. **[Styling Guide](STYLING.md)** - TailwindCSS configuration and customization
+7. **[Multilingual Guide](MULTILINGUAL.md)** - Set up multilingual sites with language switcher
 
 ### Deployment & Production
 
 Ready to go live?
 
-7. **[Deployment Guide](DEPLOYMENT.md)** - Deploy to Netlify, Vercel, GitHub Pages, and more
-8. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
+8. **[Deployment Guide](DEPLOYMENT.md)** - Deploy to Netlify, Vercel, GitHub Pages, and more
+9. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
 
 ## 🚀 Quick Start
 
@@ -161,6 +162,23 @@ Everything about the theme's styling system:
 
 ---
 
+### [Multilingual Guide](MULTILINGUAL.md)
+
+Complete guide to creating multilingual sites:
+
+- Setting up multiple languages
+- Language switcher configuration
+- Content organization by language
+- Per-language menu configuration
+- Smart link generation
+- Desktop and mobile language switching
+- Troubleshooting multilingual issues
+- Best practices for international sites
+
+**Start here if:** You're building a multilingual or international website.
+
+---
+
 ### [Content Creation Guide](CONTENT-CREATION.md)
 
 Learn how to create and organize content:
@@ -243,6 +261,9 @@ Solutions to common problems:
 **...add team members?**
 → See [Shortcodes - Team Member](SHORTCODES.md#team-member)
 
+**...enable multilingual support?**
+→ See [Multilingual Guide](MULTILINGUAL.md)
+
 **...enable Google Analytics?**
 → See [Configuration - Analytics](CONFIGURATION.md#analytics-configuration)
 
@@ -261,6 +282,7 @@ This theme includes:
 - ✅ **Responsive Design** - Mobile-first, looks great on all devices
 - ✅ **Performance Optimized** - Fast builds, minimal JavaScript, optimized assets
 - ✅ **SEO Ready** - Meta tags, Open Graph, Twitter Cards
+- ✅ **Multilingual Support** - Built-in language switcher for international sites
 - ✅ **Blog System** - Categories, tags, sidebar, table of contents
 - ✅ **Multiple Page Templates** - Pricing, features, company, careers, jobs
 - ✅ **Analytics Integration** - Google Analytics and Tag Manager support
