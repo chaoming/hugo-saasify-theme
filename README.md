@@ -24,6 +24,7 @@ A modern and elegant Hugo theme specifically designed for SaaS websites. Built w
 - 🔧 Custom head content support for additional tracking scripts
 - 🎪 21 pre-built shortcodes for rapid page building
 - 📚 Documentation layout with automatic sidebar navigation
+- 🌍 Built-in multilingual support with automatic language switcher
 
 ## Documentation
 

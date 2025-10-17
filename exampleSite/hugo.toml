@@ -1,9 +1,31 @@
 baseURL = "https://saasify-demo.chaoming.li/"
-languageCode = "en-us"
 title = "Saasify"
 
 # Theme Config
 theme = "../.."
+
+# Multilingual Configuration (Optional - Uncomment to enable)
+# defaultContentLanguage = "en"
+# defaultContentLanguageInSubdir = false
+# 
+# [languages]
+#   [languages.en]
+#     languageCode = "en-us"
+#     languageName = "English"
+#     weight = 1
+#   
+#   [languages.es]
+#     languageCode = "es"
+#     languageName = "Español"
+#     weight = 2
+#   
+#   [languages.fr]
+#     languageCode = "fr"
+#     languageName = "Français"
+#     weight = 3
+
+# Single Language Configuration
+languageCode = "en-us"
 
 # Enable syntax highlighting
 pygmentsCodeFences = true

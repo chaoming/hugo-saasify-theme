@@ -671,6 +671,8 @@ Place files in `static/js/` directory.
 
 ### Language Configuration
 
+The theme includes a built-in language switcher that automatically appears in the header when multiple languages are configured.
+
 For multilingual sites:
 
 ```toml
@@ -679,17 +681,36 @@ defaultContentLanguageInSubdir = false
 
 [languages]
   [languages.en]
+    languageCode = "en-us"
     languageName = "English"
     weight = 1
     [languages.en.params]
       description = "English description"
 
   [languages.es]
+    languageCode = "es"
     languageName = "Español"
     weight = 2
     [languages.es.params]
       description = "Descripción en español"
+  
+  [languages.fr]
+    languageCode = "fr"
+    languageName = "Français"
+    weight = 3
+    [languages.fr.params]
+      description = "Description en français"
 ```
+
+#### Language Switcher
+
+When multiple languages are configured:
+- A language switcher dropdown automatically appears in the header navigation (both desktop and mobile)
+- The switcher shows the current language with a globe icon
+- Users can click to see available languages and switch between them
+- The switcher intelligently links to translated pages when available, or the homepage for untranslated content
+
+The language switcher only displays when `[languages]` is configured with at least 2 languages. For single-language sites, it remains hidden.
 
 ### Output Formats
 
