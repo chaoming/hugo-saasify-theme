@@ -4,7 +4,7 @@
 
 ### 1. Language Switcher Component (`layouts/partials/language-switcher.html`)
 A new partial component that:
-- Only displays when multiple languages are configured (`.Site.IsMultiLingual`)
+- Only displays when multiple languages are configured (`hugo.IsMultilingual`)
 - Shows current language with a globe icon
 - Provides dropdown menu on hover (desktop) or click (mobile)
 - Links to translated pages when available, or homepage for untranslated content

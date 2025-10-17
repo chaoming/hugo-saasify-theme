@@ -92,7 +92,7 @@
                 {{ end }}
                 
                 <!-- Mobile Language Switcher -->
-                {{ if .Site.IsMultiLingual }}
+                {{ if hugo.IsMultilingual }}
                 {{ $currentLang := .Language }}
                 <div class="py-2 border-t border-gray-100 mt-2">
                     <div class="text-xl text-gray-900 font-bold mb-2">
