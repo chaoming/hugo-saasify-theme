@@ -2,8 +2,40 @@
   <h3 class="text-lg font-semibold text-gray-900 mb-3 mt-1">{{ i18n "documentation" }}</h3>
   <nav class="docs-nav">
     <ul class="space-y-1">
-      {{ range (where .Site.Pages "Section" "docs").ByWeight }}
-        {{ if and .Title (not .IsHome) (ne .Kind "section") }}
+      {{/* Get all docs pages */}}
+      {{ $docsPages := where .Site.Pages "Section" "docs" }}
+      {{ $docsPages = where $docsPages ".IsHome" false }}
+
+      {{/* Build list of all section directories to check against */}}
+      {{ $sectionDirs := slice }}
+      {{ range $docsPages }}
+        {{ if eq .Kind "section" }}
+          {{ $sectionDirs = $sectionDirs | append .File.Dir }}
+        {{ end }}
+      {{ end }}
+
+      {{/* Build top-level items: pages directly in docs/ AND first-level sections */}}
+      {{ $topLevel := slice }}
+      {{ range $docsPages }}
+        {{ $dir := .File.Dir }}
+
+        {{/* For sections: include if NOT the root "docs/" section */}}
+        {{ if eq .Kind "section" }}
+          {{ if ne $dir "docs/" }}
+            {{/* This is a first-level section like "concepts/", "react/", "backend/" */}}
+            {{ $topLevel = $topLevel | append . }}
+          {{ end }}
+        {{ else if eq .Kind "page" }}
+          {{/* For pages: only include if Dir is exactly "docs/" (top-level pages) */}}
+          {{ if eq $dir "docs/" }}
+            {{ $topLevel = $topLevel | append . }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+      {{/* Display top-level items sorted by weight */}}
+      {{ range sort $topLevel "Weight" }}
+        {{ if .Title }}
         <li>
           <a href="{{ .RelPermalink }}"
              class="block px-4 py-2 rounded-md transition-colors duration-200
@@ -14,6 +46,38 @@
                     {{ end }}">
             {{ .Title }}
           </a>
+
+          {{/* If this is a section, show its children */}}
+          {{ if eq .Kind "section" }}
+            {{ $sectionDir := .File.Dir }}
+            {{ $children := slice }}
+
+            {{/* Find child pages in this section (same directory, but .Kind is "page" not "section") */}}
+            {{ range $docsPages }}
+              {{ if and (eq .Kind "page") (eq .File.Dir $sectionDir) }}
+                {{ $children = $children | append . }}
+              {{ end }}
+            {{ end }}
+
+            {{/* Display children if any exist */}}
+            {{ if $children }}
+            <ul class="ml-4 mt-1 space-y-1">
+              {{ range sort $children "Weight" }}
+              <li>
+                <a href="{{ .RelPermalink }}"
+                   class="block px-3 py-1.5 text-sm rounded-md transition-colors duration-200
+                          {{ if eq .RelPermalink $.RelPermalink }}
+                            bg-indigo-50 text-indigo-600 font-medium
+                          {{ else }}
+                            text-gray-600 hover:bg-gray-50 hover:text-gray-900
+                          {{ end }}">
+                  {{ .Title }}
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+            {{ end }}
+          {{ end }}
         </li>
         {{ end }}
       {{ end }}
