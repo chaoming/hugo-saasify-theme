@@ -17,8 +17,9 @@ enableGitInfo = true
   tag = 'tags'
 
 # Pagination
-paginate = 6
-paginatePath = "page"
+[pagination]
+  pagerSize = 6
+  path = "page"
 
 [params]
   description = ""
