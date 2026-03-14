@@ -48,7 +48,7 @@
     {{ end }}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ .Site.Params.favicon | relURL }}">
+    <link rel="icon" type="image/x-icon" href="{{ .Site.Params.favicon | default "images/favicon.ico" | relURL }}">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ .Permalink }}">
