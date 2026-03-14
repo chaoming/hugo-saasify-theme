@@ -427,6 +427,23 @@ content/
     └── blog/
 ```
 
+## Docker
+
+You can preview the example site using Docker without installing Hugo or Node.js locally.
+
+### Build and run
+
+```bash
+docker build -t saasify-theme .
+docker run -p 8080:80 saasify-theme
+```
+
+Then visit `http://localhost:8080`.
+
+The Dockerfile uses a multi-stage build:
+1. **Build stage** - Uses `hugomods/hugo:exts` to install dependencies, compile TailwindCSS, and build the Hugo site from the included example site
+2. **Serve stage** - Copies the built static files into an `nginx:alpine` container
+
 ## Build Your Complete SaaS Solution
 
 Hugo Saasify Theme is perfect for your **marketing site**, but what about your actual SaaS application? Check out [**Fireact.dev**](https://fireact.dev/) - an open-source framework that complements this theme perfectly.
