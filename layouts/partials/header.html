@@ -18,7 +18,7 @@
                 </a>
 
                 <!-- Navigation -->
-                <div class="hidden md:flex items-center {{ with $headerConfig.menu.spacing }}{{ . }}{{ else }}space-x-8{{ end }}">
+                <div class="hidden xl:flex items-center {{ with $headerConfig.menu.spacing }}{{ . }}{{ else }}space-x-8{{ end }}">
                     {{ range .Site.Menus.main }}
                         {{ if .Params.has_submenu }}
                         <div class="relative group">
@@ -47,7 +47,7 @@
 
                 <!-- CTA Buttons -->
                 {{ if not $headerConfig.hideButtons }}
-                <div class="hidden md:flex items-center space-x-4">
+                <div class="hidden xl:flex items-center space-x-4">
                     {{ with $headerConfig.buttons.signIn }}
                     <a href="{{ .url | default "#" }}" class="{{ with .class }}{{ . }}{{ else }}inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out border-2 border-gray-200 hover:border-primary-600 hover:text-primary-600{{ end }}">
                         {{ .text | default "Sign in" }}
@@ -63,7 +63,7 @@
                 {{ end }}
 
                 <!-- Mobile Menu Toggle -->
-                <div class="md:hidden">
+                <div class="xl:hidden">
                     <label for="nav-toggle" class="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 transition-colors cursor-pointer">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -74,7 +74,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div class="nav-content md:hidden w-full fixed left-0 right-0 top-20 bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto">
+        <div class="nav-content xl:hidden w-full fixed left-0 right-0 top-20 bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto">
             <div class="w-full px-6 py-4">
                 {{ range .Site.Menus.main }}
                     {{ if .Params.has_submenu }}
