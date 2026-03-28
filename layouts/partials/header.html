@@ -94,17 +94,11 @@
                 <!-- Mobile Language Switcher -->
                 {{ if hugo.IsMultilingual }}
                 <div class="py-4 border-t border-gray-200 mt-4">
-                    <div class="text-lg text-gray-600 font-semibold mb-2">{{ i18n "language" }}</div>
-                    {{ range .Site.Languages }}
-                    {{ if eq $.Site.Language.Lang .Lang }}
-                    <span class="block py-2 text-primary-600 font-bold">{{ .LanguageName }}</span>
-                    {{ else }}
-                    {{ $langURL := printf "/%s/" .Lang }}
-                    <a href="{{ $langURL }}" class="language-switch-link block py-2 text-gray-700 hover:text-primary-600" data-lang="{{ .Lang }}">
-                        {{ .LanguageName }}
-                    </a>
-                    {{ end }}
-                    {{ end }}
+                    <select id="mobile-language-select" class="block w-full px-6 py-3 rounded-lg font-bold text-base transition duration-200 ease-in-out border-2 border-gray-200 hover:border-primary-600 bg-white text-gray-900 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                        {{ range .Site.Languages }}
+                        <option value="{{ .Lang }}" {{ if eq $.Site.Language.Lang .Lang }}selected{{ end }}>{{ .LanguageName }}</option>
+                        {{ end }}
+                    </select>
                 </div>
                 {{ end }}
 
@@ -153,6 +147,17 @@
                     } else {
                         document.body.style.overflow = '';
                     }
+                });
+            }
+
+            var mobileLangSelect = document.getElementById('mobile-language-select');
+            if (mobileLangSelect) {
+                mobileLangSelect.addEventListener('change', function() {
+                    var lang = this.value;
+                    if (typeof localStorage !== 'undefined') {
+                        localStorage.setItem('hugo_preferred_language', lang);
+                    }
+                    window.location.href = '/' + lang + '/';
                 });
             }
         })();
