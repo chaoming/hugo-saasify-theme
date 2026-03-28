@@ -79,8 +79,13 @@
                 {{ range .Site.Menus.main }}
                     {{ if .Params.has_submenu }}
                     <div class="py-2">
-                        <div class="text-xl text-gray-900 font-bold mb-2">{{ .Name }}</div>
-                        <div class="pl-4">
+                        <button class="flex items-center justify-between w-full text-xl text-gray-900 font-bold py-2 mobile-submenu-toggle" aria-expanded="false">
+                            {{ .Name }}
+                            <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="pl-4 hidden mobile-submenu-content">
                             {{ range .Params.submenu }}
                             <a href="{{ .url }}" class="block text-gray-700 hover:text-primary-600 py-2">{{ .name }}</a>
                             {{ end }}
@@ -149,6 +154,17 @@
                     }
                 });
             }
+
+            var toggles = document.querySelectorAll('.mobile-submenu-toggle');
+            toggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function() {
+                    var content = this.nextElementSibling;
+                    var expanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !expanded);
+                    content.classList.toggle('hidden');
+                    this.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+                });
+            });
 
             var mobileLangSelect = document.getElementById('mobile-language-select');
             if (mobileLangSelect) {
