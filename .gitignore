@@ -28,3 +28,6 @@ static/css/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Worktrees for isolated feature work — never tracked.
+.worktree/
