@@ -168,31 +168,23 @@ Display features in a list format.
 Display benefits in a grid layout.
 
 **Parameters:**
-- `columns` (integer, optional) - Number of columns (default: 3)
+- `title` (string, optional) - Section heading
+- `subtitle` (string, optional) - Section subheading
+- `benefit1` … `benefit10` (string) - Each benefit as a pipe-separated string: `"icon|bgColor|title|description"`
+  - `icon` — icon name (see icon list in `docs/STYLING.md`)
+  - `bgColor` — hex color used at 10% opacity for the icon background (e.g. `#3B82F6`)
+  - `title` — benefit heading
+  - `description` — benefit body text
 
 **Example:**
 ```markdown
-{{< benefits-grid columns="3" >}}
-{
-  "items": [
-    {
-      "icon": "clock",
-      "title": "Save Time",
-      "description": "Automate repetitive tasks and focus on what matters"
-    },
-    {
-      "icon": "dollar",
-      "title": "Reduce Costs",
-      "description": "Cut operational expenses by up to 50%"
-    },
-    {
-      "icon": "users",
-      "title": "Scale Easily",
-      "description": "Grow from 10 to 10,000 users effortlessly"
-    }
-  ]
-}
-{{< /benefits-grid >}}
+{{< benefits-grid
+    title="Why choose us"
+    subtitle="Everything you need to grow"
+    benefit1="clock|#3B82F6|Save Time|Automate repetitive tasks and focus on what matters"
+    benefit2="dollar|#10B981|Reduce Costs|Cut operational expenses by up to 50%"
+    benefit3="users|#8B5CF6|Scale Easily|Grow from 10 to 10,000 users effortlessly"
+>}}
 ```
 
 ### value-card
