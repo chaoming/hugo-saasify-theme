@@ -81,32 +81,44 @@
             
             function animate(currentTime) {
                 if (!isPaused) {
-                    const delta = currentTime - lastTime;
+                    // Clamp delta so a throttled/backgrounded tab can't produce
+                    // a huge single-frame jump when it regains focus.
+                    const delta = Math.min(currentTime - lastTime, 100);
                     position += speed * delta;
-                    
-                    // Reset position seamlessly when we've moved one full set
+
+                    // Reset position seamlessly when we've moved one full set.
+                    // Modulo (not a single subtraction) so we still land in
+                    // range even if position overshot by more than halfWidth.
                     if (position >= halfWidth) {
-                        position = position - halfWidth;
+                        position = position % halfWidth;
                     }
-                    
+
                     track.style.transform = `translateX(-${position}px)`;
                 }
-                
+
                 lastTime = currentTime;
                 requestAnimationFrame(animate);
             }
-            
+
             // Start animation
             requestAnimationFrame(animate);
-            
+
             // Pause on hover
             container.addEventListener('mouseenter', () => {
                 isPaused = true;
             });
-            
+
             container.addEventListener('mouseleave', () => {
                 isPaused = false;
                 lastTime = performance.now(); // Reset lastTime to avoid jump
+            });
+
+            // Tab was backgrounded and rAF throttled/paused - resync lastTime
+            // on return so the elapsed background time isn't applied as delta.
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) {
+                    lastTime = performance.now();
+                }
             });
             
             // Handle window resize to adjust speed
