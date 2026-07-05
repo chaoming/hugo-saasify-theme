@@ -59,9 +59,17 @@
             const container = track.parentElement;
 
             // The shortcode renders the real cards followed by one
-            // aria-hidden duplicate set, so half of the initial track is
-            // one full loop of unique content.
-            const oneSetWidth = track.scrollWidth / 2;
+            // aria-hidden duplicate set. The seamless wrap distance is the
+            // offset from the start of the first real card to the start of
+            // the first duplicate card - NOT half of track.scrollWidth.
+            // flex `gap` applies uniformly between every child, so treating
+            // the two halves as symmetric undercounts by half a gap and
+            // produces a small but consistent snap at every wrap.
+            const originalCards = Array.from(track.children).slice(0, track.children.length / 2);
+            const firstDuplicateCard = track.children[originalCards.length];
+            const oneSetWidth = firstDuplicateCard
+                ? firstDuplicateCard.offsetLeft - originalCards[0].offsetLeft
+                : 0;
 
             // Ensure track has valid dimensions before animating
             if (oneSetWidth === 0) {
@@ -74,7 +82,6 @@
             // exposing blank space. Clone the original cards as many extra
             // times as needed so there's always enough duplicated content
             // ahead of the viewport for the whole scroll cycle.
-            const originalCards = Array.from(track.children).slice(0, track.children.length / 2);
             while (track.scrollWidth < container.clientWidth + oneSetWidth) {
                 originalCards.forEach(card => {
                     const clone = card.cloneNode(true);
