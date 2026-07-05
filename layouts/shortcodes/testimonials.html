@@ -57,27 +57,50 @@
             track.style.animation = 'none';
             
             const container = track.parentElement;
-            
-            // Calculate the width of one set of testimonials (50% of track)
-            const trackWidth = track.scrollWidth;
-            const halfWidth = trackWidth / 2;
-            
+
+            // The shortcode renders the real cards followed by one
+            // aria-hidden duplicate set. The seamless wrap distance is the
+            // offset from the start of the first real card to the start of
+            // the first duplicate card - NOT half of track.scrollWidth.
+            // flex `gap` applies uniformly between every child, so treating
+            // the two halves as symmetric undercounts by half a gap and
+            // produces a small but consistent snap at every wrap.
+            const originalCards = Array.from(track.children).slice(0, track.children.length / 2);
+            const firstDuplicateCard = track.children[originalCards.length];
+            const oneSetWidth = firstDuplicateCard
+                ? firstDuplicateCard.offsetLeft - originalCards[0].offsetLeft
+                : 0;
+
             // Ensure track has valid dimensions before animating
-            if (trackWidth === 0 || halfWidth === 0) {
+            if (oneSetWidth === 0) {
                 return;
             }
-            
+
+            // Two copies only loop seamlessly if a copy is at least as wide
+            // as the visible container - otherwise the scroll position runs
+            // past the end of the rendered content before it's time to wrap,
+            // exposing blank space. Clone the original cards as many extra
+            // times as needed so there's always enough duplicated content
+            // ahead of the viewport for the whole scroll cycle.
+            while (track.scrollWidth < container.clientWidth + oneSetWidth) {
+                originalCards.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    track.appendChild(clone);
+                });
+            }
+
             let position = 0; // Current position in pixels
             let isPaused = false;
             let lastTime = performance.now();
-            
+
             // Check for mobile and set duration - responsive to window resize
             function getDuration() {
                 return window.innerWidth <= 768 ? 15000 : 40000;
             }
-            
+
             // Speed in pixels per millisecond (recalculated on resize)
-            let speed = halfWidth / getDuration();
+            let speed = oneSetWidth / getDuration();
             
             function animate(currentTime) {
                 if (!isPaused) {
@@ -88,9 +111,9 @@
 
                     // Reset position seamlessly when we've moved one full set.
                     // Modulo (not a single subtraction) so we still land in
-                    // range even if position overshot by more than halfWidth.
-                    if (position >= halfWidth) {
-                        position = position % halfWidth;
+                    // range even if position overshot by more than oneSetWidth.
+                    if (position >= oneSetWidth) {
+                        position = position % oneSetWidth;
                     }
 
                     track.style.transform = `translateX(-${position}px)`;
@@ -121,12 +144,20 @@
                 }
             });
             
-            // Handle window resize to adjust speed
+            // Handle window resize to adjust speed, and re-check whether a
+            // wider container now needs more duplicated content.
             let resizeTimeout;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {
-                    speed = halfWidth / getDuration();
+                    speed = oneSetWidth / getDuration();
+                    while (track.scrollWidth < container.clientWidth + oneSetWidth) {
+                        originalCards.forEach(card => {
+                            const clone = card.cloneNode(true);
+                            clone.setAttribute('aria-hidden', 'true');
+                            track.appendChild(clone);
+                        });
+                    }
                 }, 250); // Debounce resize events
             });
         });
