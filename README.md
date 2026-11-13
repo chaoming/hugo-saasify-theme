@@ -185,6 +185,12 @@ paginatePath = "page"
   # Only enabled in production
   googleTagManager = "GTM-XXXXXXX"
 
+  # Fonts (optional). Set googleFonts = false to stop loading Inter and
+  # Plus Jakarta Sans from Google Fonts, e.g. to self-host them for privacy
+  # (see docs/STYLING.md#font-loading).
+  [params.fonts]
+    googleFonts = true
+
   # Header Configuration
   [params.header]
     background = "bg-white/80 backdrop-blur-sm"
@@ -314,6 +320,8 @@ fontFamily: {
   heading: ['Plus Jakarta Sans', 'sans-serif'],
 }
 ```
+
+Both fonts are loaded from Google Fonts by default. To serve them yourself instead (no third-party requests), set `googleFonts = false` under `[params.fonts]` and follow the [Styling Guide](docs/STYLING.md#font-loading).
 
 ### Layout Components
 

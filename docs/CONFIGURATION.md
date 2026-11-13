@@ -82,6 +82,11 @@ Global parameters available throughout your site.
 
   # Copyright text
   copyright = "© 2025 Your Company. All rights reserved."
+
+  # Fonts: load Inter and Plus Jakarta Sans from Google Fonts (default true).
+  # Set to false to self-host them instead; see the Styling Guide.
+  [params.fonts]
+    googleFonts = true
 ```
 
 ### Parameter Descriptions
@@ -96,6 +101,7 @@ Global parameters available throughout your site.
 | `favicon` | string | Path to favicon | Optional |
 | `ogImage` | string | Default Open Graph image | Optional |
 | `copyright` | string | Footer copyright text | Optional |
+| `fonts.googleFonts` | boolean | Load the theme fonts from Google Fonts (default `true`); set `false` to self-host, see [Font Loading](STYLING.md#font-loading) | Optional |
 
 ## Header Configuration
 
@@ -1068,6 +1074,8 @@ Configure privacy-related features:
   [privacy.youtube]
     privacyEnhanced = true
 ```
+
+The theme's own fonts are loaded from Google Fonts by default, which sends each visitor's IP address to Google. For a site with no third-party requests, set `googleFonts = false` under `[params.fonts]` and self-host the fonts as described in the [Styling Guide](STYLING.md#font-loading).
 
 ## Environment Variables
 
