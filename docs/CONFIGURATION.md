@@ -332,6 +332,12 @@ Configure social media profiles for footer and sharing.
   medium = "https://medium.com/@yourhandle"
   dribbble = "https://dribbble.com/yourprofile"
   behance = "https://behance.net/yourprofile"
+  mastodon = "https://mastodon.social/@yourhandle"
+  reddit = "https://reddit.com/r/yoursubreddit"
+  gitlab = "https://gitlab.com/yourorg"
+  vimeo = "https://vimeo.com/yourchannel"
+  matrix = "https://matrix.to/#/#yourroom:matrix.org"
+  rss = "/index.xml"
 ```
 
 Add only the social networks you want to display. Omit the others.
