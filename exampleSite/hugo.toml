@@ -58,6 +58,12 @@ enableGitInfo = true
     medium = "https://medium.com/@yourhandle"
     dribbble = "https://dribbble.com/yourprofile"
     behance = "https://behance.net/yourprofile"
+    mastodon = "https://mastodon.social/@yourhandle"
+    reddit = "https://reddit.com/r/yoursubreddit"
+    gitlab = "https://gitlab.com/yourorg"
+    vimeo = "https://vimeo.com/yourchannel"
+    matrix = "https://matrix.to/#/#yourroom:matrix.org"
+    rss = "/index.xml"
   
   # Footer Configuration
   [params.footer]
