@@ -128,7 +128,12 @@
         <div class="mt-12 pt-8 border-t border-gray-200">
             <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 <p class="text-gray-600 text-sm">
-                    © {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.
+                    {{- $year := now.Format "2006" }}
+                    {{ with .Site.Params.copyright }}
+                    {{ replace . "{year}" $year }}
+                    {{ else }}
+                    {{ i18n "copyright" (dict "Year" $year "SiteName" .Site.Title) | default (printf "© %s %s. All rights reserved." $year .Site.Title) }}
+                    {{ end }}
                 </p>
                 <a href="https://chaoming.li" class="text-sm text-gray-600 hover:text-primary-600" target="_blank" rel="noopener noreferrer">
                     Designed by Chaoming Li
