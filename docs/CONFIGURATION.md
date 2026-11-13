@@ -80,8 +80,10 @@ Global parameters available throughout your site.
   # Default OG Image
   ogImage = "/images/og-image.jpg"
 
-  # Copyright text
-  copyright = "© 2025 Your Company. All rights reserved."
+  # Copyright text ({year} is replaced with the current year at build time).
+  # When unset, the translated default "© <year> <site title>. All rights
+  # reserved." is used.
+  copyright = "© 2019–{year} Your Company Inc. All rights reserved."
 ```
 
 ### Parameter Descriptions
@@ -95,7 +97,7 @@ Global parameters available throughout your site.
 | `googleTagManager` | string | Google Tag Manager ID | Optional |
 | `favicon` | string | Path to favicon | Optional |
 | `ogImage` | string | Default Open Graph image | Optional |
-| `copyright` | string | Footer copyright text | Optional |
+| `copyright` | string | Footer copyright text; `{year}` is replaced with the current year. Defaults to the `copyright` i18n string | Optional |
 
 ## Header Configuration
 
