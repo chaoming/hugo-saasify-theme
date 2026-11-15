@@ -1,7 +1,7 @@
 {{ $headerConfig := .Site.Params.header }}
 {{ $dropdownConfig := $headerConfig.menu.dropdown }}
 <div class="mobile-menu-wrapper">
-    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="{{ i18n "toggleMenu" | default "Toggle navigation menu" }}">
     <header class="fixed w-full top-0 z-50 {{ with $headerConfig.background }}{{ . }}{{ else }}bg-white/80 backdrop-blur-sm{{ end }} {{ with $headerConfig.border }}{{ . }}{{ else }}border-b border-gray-100{{ end }}">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <nav class="flex items-center justify-between h-20">
@@ -65,7 +65,7 @@
                 <!-- Mobile Menu Toggle -->
                 <div class="xl:hidden">
                     <label for="nav-toggle" class="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 transition-colors cursor-pointer">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </label>
@@ -130,8 +130,28 @@
         .mobile-menu-wrapper {
             position: relative;
         }
+        /* Visually hidden rather than display: none, so that the checkbox
+           stays reachable by keyboard and screen readers. */
         .nav-toggle {
-            display: none;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        .nav-toggle:focus-visible ~ header label[for="nav-toggle"] {
+            outline: 2px solid currentColor;
+            outline-offset: 2px;
+        }
+        /* The toggle only exists below the xl breakpoint. */
+        @media (min-width: 1280px) {
+            .nav-toggle {
+                display: none;
+            }
         }
         .nav-content {
             display: none;

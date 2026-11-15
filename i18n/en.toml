@@ -54,6 +54,9 @@ other = "The page you are looking for doesn't exist or has been moved."
 [home]
 other = "Home"
 
+[toggleMenu]
+other = "Toggle navigation menu"
+
 [about]
 other = "About"
 
