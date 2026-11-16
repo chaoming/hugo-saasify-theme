@@ -11,7 +11,7 @@
                     </a>
                     <span class="text-xl font-bold text-gray-900">{{ .Site.Title }}</span>
                 </div>
-                <div class="flex space-x-3 p-2">
+                <div class="flex flex-wrap gap-3 p-2">
                     {{ with .Site.Params.social.linkedin }}
                     <a href="{{ . }}" class="text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer">
                         <span class="sr-only">LinkedIn</span>
@@ -88,6 +88,42 @@
                     <a href="{{ . }}" class="text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer">
                         <span class="sr-only">Behance</span>
                         <img src="/images/social/behance.svg" alt="Behance" class="h-5 w-5">
+                    </a>
+                    {{ end }}
+                    {{ with .Site.Params.social.mastodon }}
+                    <a href="{{ . }}" class="text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer">
+                        <span class="sr-only">Mastodon</span>
+                        <img src="/images/social/mastodon.svg" alt="Mastodon" class="h-5 w-5">
+                    </a>
+                    {{ end }}
+                    {{ with .Site.Params.social.reddit }}
+                    <a href="{{ . }}" class="text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer">
+                        <span class="sr-only">Reddit</span>
+                        <img src="/images/social/reddit.svg" alt="Reddit" class="h-5 w-5">
+                    </a>
+                    {{ end }}
+                    {{ with .Site.Params.social.gitlab }}
+                    <a href="{{ . }}" class="text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer">
+                        <span class="sr-only">GitLab</span>
+                        <img src="/images/social/gitlab.svg" alt="GitLab" class="h-5 w-5">
+                    </a>
+                    {{ end }}
+                    {{ with .Site.Params.social.vimeo }}
+                    <a href="{{ . }}" class="text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer">
+                        <span class="sr-only">Vimeo</span>
+                        <img src="/images/social/vimeo.svg" alt="Vimeo" class="h-5 w-5">
+                    </a>
+                    {{ end }}
+                    {{ with .Site.Params.social.matrix }}
+                    <a href="{{ . }}" class="text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer">
+                        <span class="sr-only">Matrix</span>
+                        <img src="/images/social/matrix.svg" alt="Matrix" class="h-5 w-5">
+                    </a>
+                    {{ end }}
+                    {{ with .Site.Params.social.rss }}
+                    <a href="{{ . }}" class="text-gray-600 hover:text-gray-900" target="_blank" rel="noopener noreferrer">
+                        <span class="sr-only">RSS</span>
+                        <img src="/images/social/rss.svg" alt="RSS" class="h-5 w-5">
                     </a>
                     {{ end }}
                 </div>

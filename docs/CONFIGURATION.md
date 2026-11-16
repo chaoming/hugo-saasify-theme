@@ -84,6 +84,11 @@ Global parameters available throughout your site.
   # When unset, the translated default "© <year> <site title>. All rights
   # reserved." is used.
   copyright = "© 2019–{year} Your Company Inc. All rights reserved."
+
+  # Fonts: load Inter and Plus Jakarta Sans from Google Fonts (default true).
+  # Set to false to self-host them instead; see the Styling Guide.
+  [params.fonts]
+    googleFonts = true
 ```
 
 ### Parameter Descriptions
@@ -98,6 +103,7 @@ Global parameters available throughout your site.
 | `favicon` | string | Path to favicon | Optional |
 | `ogImage` | string | Default Open Graph image | Optional |
 | `copyright` | string | Footer copyright text; `{year}` is replaced with the current year. Defaults to the `copyright` i18n string | Optional |
+| `fonts.googleFonts` | boolean | Load the theme fonts from Google Fonts (default `true`); set `false` to self-host, see [Font Loading](STYLING.md#font-loading) | Optional |
 
 ## Header Configuration
 
@@ -334,6 +340,12 @@ Configure social media profiles for footer and sharing.
   medium = "https://medium.com/@yourhandle"
   dribbble = "https://dribbble.com/yourprofile"
   behance = "https://behance.net/yourprofile"
+  mastodon = "https://mastodon.social/@yourhandle"
+  reddit = "https://reddit.com/r/yoursubreddit"
+  gitlab = "https://gitlab.com/yourorg"
+  vimeo = "https://vimeo.com/yourchannel"
+  matrix = "https://matrix.to/#/#yourroom:matrix.org"
+  rss = "/index.xml"
 ```
 
 Add only the social networks you want to display. Omit the others.
@@ -1070,6 +1082,8 @@ Configure privacy-related features:
   [privacy.youtube]
     privacyEnhanced = true
 ```
+
+The theme's own fonts are loaded from Google Fonts by default, which sends each visitor's IP address to Google. For a site with no third-party requests, set `googleFonts = false` under `[params.fonts]` and self-host the fonts as described in the [Styling Guide](STYLING.md#font-loading).
 
 ## Environment Variables
 

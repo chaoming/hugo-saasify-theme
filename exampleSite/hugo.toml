@@ -27,7 +27,12 @@ enableGitInfo = true
   logo = "/images/logo.svg"
   # Google Analytics ID (e.g., "G-XXXXXXXXXX")
   # googleAnalytics = "G-XXXXXXXXXX"
-  
+
+  # Fonts: set googleFonts = false to stop loading Inter and Plus Jakarta Sans
+  # from Google Fonts and self-host them instead (see docs/STYLING.md).
+  # [params.fonts]
+  #   googleFonts = false
+
   # Global CTA Configuration
   [params.cta]
     enable = true
@@ -58,6 +63,12 @@ enableGitInfo = true
     medium = "https://medium.com/@yourhandle"
     dribbble = "https://dribbble.com/yourprofile"
     behance = "https://behance.net/yourprofile"
+    mastodon = "https://mastodon.social/@yourhandle"
+    reddit = "https://reddit.com/r/yoursubreddit"
+    gitlab = "https://gitlab.com/yourorg"
+    vimeo = "https://vimeo.com/yourchannel"
+    matrix = "https://matrix.to/#/#yourroom:matrix.org"
+    rss = "/index.xml"
   
   # Footer Configuration
   [params.footer]

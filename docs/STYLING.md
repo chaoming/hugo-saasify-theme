@@ -192,13 +192,50 @@ h1, h2, h3, h4, h5, h6 {
 
 ### Font Loading
 
-Fonts are loaded via Google Fonts CDN in the base template:
+By default, fonts are loaded via Google Fonts CDN in the base template:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 ```
+
+This means every visitor's browser contacts Google. If you would rather avoid third-party requests (for privacy or GDPR reasons, or to build a site that works offline), turn the Google Fonts tags off in your site configuration:
+
+```toml
+[params.fonts]
+  googleFonts = false
+```
+
+With nothing else configured, text then falls back to the next fonts in each stack (`system-ui, sans-serif`), which is a perfectly good option. To keep the theme's look, self-host the fonts:
+
+1. **Download the font files.** Both fonts are published under the SIL Open Font License. Get `woff2` files for Inter (weights 400, 500, 600, 700) and Plus Jakarta Sans (weights 600, 700, 800), e.g. from [Google Fonts](https://fonts.google.com/), [google-webfonts-helper](https://gwfh.mranftl.com/fonts) or [Fontsource](https://fontsource.org/). A variable font file per family covers all weights.
+
+2. **Add them to your site** under `static/fonts/`.
+
+3. **Declare them** in your site's `layouts/partials/custom-head.html` (see [Custom Head Content](CONFIGURATION.md#custom-head-content)):
+
+```html
+<!-- layouts/partials/custom-head.html -->
+<style>
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('/fonts/Inter-Variable.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600 800;
+    font-display: swap;
+    src: url('/fonts/PlusJakartaSans-Variable.woff2') format('woff2');
+  }
+</style>
+```
+
+If you use static (non-variable) files, add one `@font-face` rule per weight with a single `font-weight` value. No Tailwind changes are needed: `tailwind.config.js` already refers to the fonts by name.
 
 ### Typography Scale
 
