@@ -27,7 +27,12 @@ enableGitInfo = true
   logo = "/images/logo.svg"
   # Google Analytics ID (e.g., "G-XXXXXXXXXX")
   # googleAnalytics = "G-XXXXXXXXXX"
-  
+
+  # Fonts: set googleFonts = false to stop loading Inter and Plus Jakarta Sans
+  # from Google Fonts and self-host them instead (see docs/STYLING.md).
+  # [params.fonts]
+  #   googleFonts = false
+
   # Global CTA Configuration
   [params.cta]
     enable = true

@@ -53,11 +53,13 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ .Permalink }}">
     
-    <!-- Fonts -->
+    <!-- Fonts (set params.fonts.googleFonts = false to self-host instead; see docs/STYLING.md) -->
+    {{ if ne .Site.Params.fonts.googleFonts false }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-    
+    {{ end }}
+
     <!-- Main CSS (built by the `tailwindcss` CLI watch/build script, see package.json) -->
     <link rel="stylesheet" href="/css/style.css">
 
