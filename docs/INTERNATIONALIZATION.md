@@ -337,6 +337,26 @@ Each language can have its own configuration for CTAs, headers, etc:
   count = 5  # Only set non-text configuration
 ```
 
+### Footer Copyright
+
+The same applies to the footer's copyright line. A site-wide `params.copyright` is used for every language, so leave it unset if the line should be translated. The footer then uses the `copyright` translation key, which receives the current year and the site title:
+
+```toml
+# i18n/zh-cn.toml
+[copyright]
+other = "© {{ .Year }} {{ .SiteName }}。保留所有权利。"
+```
+
+To use your own wording per language instead (a legal entity name, or a year range), set it in each language's params. `{year}` is replaced with the current year:
+
+```toml
+[languages.en.params]
+  copyright = "© 2019–{year} Example Inc. All rights reserved."
+
+[languages.zh-cn.params]
+  copyright = "© 2019–{year} Example Inc. 保留所有权利。"
+```
+
 ## Translation Keys
 
 ### Complete List
@@ -379,6 +399,9 @@ The theme includes 40+ translation keys. Here are the most important ones:
 #### Homepage
 - `trustedByCompanies` - Company logos heading
 - `lovedByTeams` - Testimonials heading
+
+#### Footer
+- `copyright` - Copyright line, with `{{ .Year }}` and `{{ .SiteName }}` (see [Footer Copyright](#footer-copyright))
 
 For the complete list with default values, see `themes/hugo-saasify-theme/i18n/en.toml`
 

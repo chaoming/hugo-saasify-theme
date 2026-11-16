@@ -207,6 +207,8 @@ This means every visitor's browser contacts Google. If you would rather avoid th
   googleFonts = false
 ```
 
+Write `false` without quotes: the setting expects a boolean, and a quoted `"false"` is treated as a string, which leaves Google Fonts switched on.
+
 With nothing else configured, text then falls back to the next fonts in each stack (`system-ui, sans-serif`), which is a perfectly good option. To keep the theme's look, self-host the fonts:
 
 1. **Download the font files.** Both fonts are published under the SIL Open Font License. Get `woff2` files for Inter (weights 400, 500, 600, 700) and Plus Jakarta Sans (weights 600, 700, 800), e.g. from [Google Fonts](https://fonts.google.com/), [google-webfonts-helper](https://gwfh.mranftl.com/fonts) or [Fontsource](https://fontsource.org/). A variable font file per family covers all weights.

@@ -221,7 +221,9 @@ paginatePath = "page"
       text = "Book Demo"
       url = "/demo"
 
-  # Social Media Links (optional)
+  # Social Media Links (optional). Only the networks you set are shown.
+  # 19 networks are supported, including Mastodon, YouTube, Discord and
+  # RSS; see docs/CONFIGURATION.md#social-media-links for the full list.
   [params.social]
     linkedin = "https://linkedin.com/in/yourusername"
     twitter = "https://twitter.com/yourusername"
