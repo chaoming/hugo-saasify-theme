@@ -1018,7 +1018,7 @@ The theme includes comprehensive i18n support with the following translation key
 - `searchPlaceholder` - Search input placeholder
 
 **Footer:**
-- `copyright` - Copyright text (supports variables: `{{ .Year }}` and `{{ .SiteName }}`)
+- `copyright` - Copyright text (supports variables: `{{ .Year }}` and `{{ .SiteName }}`). Used only when `params.copyright` is not set; a site-wide `params.copyright` replaces it in every language
 - `builtWith` - "Built with" text
 - `and` - Conjunction "and"
 
