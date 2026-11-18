@@ -143,6 +143,11 @@
             white-space: nowrap;
             border: 0;
         }
+        /* An inline label with padding gets its focus outline drawn around
+           the line box, not the icon; a flex box gives it a tight outline. */
+        label[for="nav-toggle"] {
+            display: inline-flex;
+        }
         .nav-toggle:focus-visible ~ header label[for="nav-toggle"] {
             outline: 2px solid currentColor;
             outline-offset: 2px;
